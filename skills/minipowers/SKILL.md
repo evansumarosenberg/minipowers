@@ -64,6 +64,13 @@ Before presenting the plan:
 
 **Stop here until the user explicitly approves the implementation plan. Do not begin implementation.**
 
+After the implementation plan is approved, ask the user to choose:
+
+1. Start a new session for implementation (recommended)
+2. Continue in the current session
+
+If the user chooses a new session, provide a concise handoff prompt to invoke `minipowers` with the approved specification and plan paths. Do not repeat or summarize instructions from these documents; trust the model to read them and follow the workflow.
+
 ## 3. Implementation
 
 Use the approved design specification and implementation plan as the sources of truth. If they conflict, pause and ask the user rather than resolving the conflict silently.
