@@ -1,0 +1,7 @@
+interface:
+  display_name: "Minipowers"
+  short_description: "Design, plan, implement, review, and complete repository changes"
+  default_prompt: "Use $minipowers for this development task."
+
+policy:
+  allow_implicit_invocation: false
