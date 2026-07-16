@@ -13,8 +13,7 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 - `explorer`: performs targeted, read-only codebase investigation.
 - `spec_reviewer`: reviews a proposed design specification.
 - `plan_reviewer`: reviews a proposed implementation plan.
-- `compliance_reviewer`: checks implementation against the approved specification and plan.
-- `quality_reviewer`: reviews correctness, maintainability, and test quality after compliance passes.
+- `code_reviewer`: reviews implementation compliance, correctness, maintainability, test quality, security, and computational efficiency.
 
 Do not substitute generic subagents or perform required reviews in the parent thread. The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
@@ -49,10 +48,7 @@ Every task must use test-driven development:
 2. **Green:** Implement the minimum change needed to pass.
 3. **Refactor:** Improve the implementation while keeping tests green.
 
-Each task must later pass two independent implementation review gates:
-
-1. `compliance_reviewer`
-2. `quality_reviewer`
+Each task must later pass a single implementation review gate performed by `code_reviewer`.
 
 Before presenting the plan:
 
@@ -67,8 +63,7 @@ Before presenting the plan:
 After plan approval, present these defaults and ask whether the user wants changes:
 
 - `worker`: GPT-5.6 Sol, medium effort
-- `compliance_reviewer`: GPT-5.6 Sol, high effort
-- `quality_reviewer`: GPT-5.6 Sol, high effort
+- `code_reviewer`: GPT-5.6 Sol, high effort
 
 The checked-in configurations for `spec_reviewer` and `plan_reviewer` apply during design and planning.
 
@@ -82,14 +77,13 @@ Execute tasks sequentially by default. Parallelize implementation only when task
 
 For each task:
 
-1. Delegate implementation to `worker`.
-2. Require red/green/refactor and relevant validation.
-3. Delegate compliance review to `compliance_reviewer`.
-4. Return findings to `worker`; repeat until the reviewer returns `PASS`.
-5. Delegate quality review to `quality_reviewer`.
-6. Return findings to `worker`; repeat until the reviewer returns `PASS`.
-7. Mark the task complete.
-8. Create a separate commit containing only that completed task.
+1. Before starting the task, retire every subagent used for the previous implementation task. Do not reuse a previous task's `worker`, `code_reviewer`, or other task-scoped subagent; start fresh subagents for the new task.
+2. Delegate implementation to a fresh `worker`.
+3. Require red/green/refactor and relevant validation.
+4. Delegate the implementation review to a fresh `code_reviewer`.
+5. Return findings to `worker`; repeat review until `code_reviewer` returns `PASS`.
+6. Mark the task complete.
+7. Create a separate commit containing only that completed task.
 
 Reviewers report findings and do not modify code. `worker` must not review its own work. Use `explorer` for targeted, read-only investigation when useful.
 
@@ -105,7 +99,7 @@ Do not silently expand scope, alter approved behavior, or bypass a review gate.
 
 ## 5. Completion
 
-After all tasks pass both review gates:
+After all tasks pass the code review gate:
 
 1. Run the full relevant test and validation suite.
 2. Confirm the implementation satisfies the approved design.
