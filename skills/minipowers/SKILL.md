@@ -5,7 +5,7 @@ description: Run the user-approved design, planning, subagent implementation, re
 
 # Minipowers
 
-This skill governs the coordinating parent thread only. Do not ask subagents to invoke or follow this skill, and do not include its full contents in delegated prompts. Give each subagent only its bounded assignment and the relevant source-of-truth files.
+This skill governs the coordinating parent thread only. Give each subagent only its bounded assignment and the relevant source-of-truth files.
 
 Use these project-scoped custom subagents from `.codex/agents/`:
 
@@ -15,7 +15,7 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 - `plan_reviewer`: reviews a proposed implementation plan.
 - `code_reviewer`: reviews implementation for compliance and code quality.
 
-Do not substitute generic subagents or perform required reviews in the parent thread. The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
+The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
 ## 1. Design
 
