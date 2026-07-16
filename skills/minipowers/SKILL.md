@@ -20,9 +20,10 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
 ## 1. Design
 
 1. Inspect the relevant codebase and documentation, using `explorer` where useful.
-2. Conduct a thorough design interview until you and the user reach a shared understanding:
+2. Conduct a rigorous, Socratic design interview until you and the user reach a shared understanding:
    - Explore the codebase instead of asking the user any question that the codebase can answer.
    - Walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
+   - Critically evaluate the user's initial vision; surface better alternatives and their tradeoffs rather than treating it as fixed.
    - Ask exactly one question at a time and wait for the user's answer before continuing.
    - With each question, provide a recommended answer and concise rationale.
    - Continue until every material aspect of the design is resolved; do not stop after the first workable approach.
