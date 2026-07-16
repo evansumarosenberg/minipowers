@@ -32,11 +32,17 @@ Immediately present these defaults and ask whether the user wants changes:
 ## 2. Design
 
 1. Inspect the relevant codebase and documentation, using `explorer` where useful.
-2. Brainstorm viable approaches with the user and resolve material ambiguities.
-3. Write the proposed design specification as Markdown under `docs/`.
-4. Delegate review to `spec_reviewer`.
-5. Address its findings and repeat review until it returns `PASS`.
-6. Present the reviewed specification for explicit user approval.
+2. Conduct a thorough design interview until you and the user reach a shared understanding:
+   - Explore the codebase instead of asking the user any question that the codebase can answer.
+   - Walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
+   - Ask exactly one question at a time and wait for the user's answer before continuing.
+   - With each question, provide a recommended answer and concise rationale.
+   - Continue until every material aspect of the design is resolved; do not stop after the first workable approach.
+3. Summarize the agreed decisions and verify that no material ambiguity remains. Resume the one-question-at-a-time interview if any does.
+4. Write the proposed design specification as Markdown under `docs/`.
+5. Delegate review to `spec_reviewer`.
+6. Address its findings and repeat review until it returns `PASS`.
+7. Present the reviewed specification for explicit user approval.
 
 The approved design specification is the source of truth for intended behavior and scope.
 
