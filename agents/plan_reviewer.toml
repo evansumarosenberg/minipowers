@@ -1,7 +1,7 @@
 name = "plan_reviewer"
 description = "Reviews an implementation plan before it is presented for user approval."
 model = "gpt-5.6-sol"
-model_reasoning_effort = "high"
+model_reasoning_effort = "xhigh"
 sandbox_mode = "read-only"
 
 developer_instructions = """
