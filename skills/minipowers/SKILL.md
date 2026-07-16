@@ -13,7 +13,7 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 - `explorer`: performs targeted, read-only codebase investigation.
 - `spec_reviewer`: reviews a proposed design specification.
 - `plan_reviewer`: reviews a proposed implementation plan.
-- `code_reviewer`: reviews implementation compliance, correctness, maintainability, test quality, security, and computational efficiency.
+- `code_reviewer`: reviews implementation for compliance and code quality.
 
 Do not substitute generic subagents or perform required reviews in the parent thread. The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
