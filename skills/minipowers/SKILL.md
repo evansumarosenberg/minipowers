@@ -17,19 +17,7 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 
 Do not substitute generic subagents or perform required reviews in the parent thread. The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
-## 1. Subagent Configuration
-
-Immediately present these defaults and ask whether the user wants changes:
-
-- `worker`: GPT-5.6 Sol, high effort
-- `explorer`: GPT-5.6 Terra, medium effort
-- `spec_reviewer`: GPT-5.6 Sol, extra high effort
-- `plan_reviewer`: GPT-5.6 Sol, extra high effort
-- `code_reviewer`: GPT-5.6 Sol, extra high effort
-
-**Do not begin design until the user confirms the subagent configuration.**
-
-## 2. Design
+## 1. Design
 
 1. Inspect the relevant codebase and documentation, using `explorer` where useful.
 2. Conduct a thorough design interview until you and the user reach a shared understanding:
@@ -48,7 +36,7 @@ The approved design specification is the source of truth for intended behavior a
 
 **Stop here until the user explicitly approves the design specification. Do not create an implementation plan or modify production code.**
 
-## 3. Implementation Plan
+## 2. Implementation Plan
 
 After design approval, write an implementation plan as Markdown under `docs/`.
 
@@ -76,7 +64,7 @@ Before presenting the plan:
 
 **Stop here until the user explicitly approves the implementation plan. Do not begin implementation.**
 
-## 4. Implementation
+## 3. Implementation
 
 Use the approved design specification and implementation plan as the sources of truth. If they conflict, pause and ask the user rather than resolving the conflict silently.
 
@@ -104,7 +92,7 @@ If implementation requires a material deviation from the approved design:
 
 Do not silently expand scope, alter approved behavior, or bypass a review gate.
 
-## 5. Completion
+## 4. Completion
 
 After all tasks pass the code review gate:
 
