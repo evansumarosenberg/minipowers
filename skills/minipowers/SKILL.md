@@ -27,7 +27,7 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
    - Ask exactly one question at a time and wait for the user's answer before continuing.
    - With each question, provide a recommended answer and concise rationale.
    - Continue until every material aspect of the design is resolved; do not stop after the first workable approach.
-3. Summarize the agreed decisions and verify that no material ambiguity remains. Resume the one-question-at-a-time interview if any does.
+3. Summarize the agreed decisions and verify that no ambiguity remains. Resume the interview if any does.
 4. Write the proposed design specification as Markdown under `docs/`.
 5. Delegate review to `spec_reviewer`.
 6. Address its findings and repeat review until it returns `PASS`.
