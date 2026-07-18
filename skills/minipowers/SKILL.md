@@ -1,6 +1,6 @@
 ---
 name: minipowers
-description: Run the user-approved design, planning, subagent implementation, review, commit, completion, and post-completion debugging workflow for a non-trivial repository development task.
+description: Run the user-approved design, planning, subagent implementation, review, commit, completion, and debugging workflow for non-trivial repository changes, including reported bugs in existing implementations.
 ---
 
 # Minipowers
@@ -14,13 +14,13 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 - `spec_reviewer`: reviews a proposed design specification.
 - `plan_reviewer`: reviews a proposed implementation plan.
 - `code_reviewer`: reviews implementation for compliance and code quality.
-- `debugger`: reproduces and diagnoses user-reported errors after completion.
+- `debugger`: reproduces and diagnoses user-reported errors.
 
 The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
 ## 1. Design
 
-1. Inspect the relevant codebase and documentation, using `explorer` where useful.
+1. Inspect the relevant codebase and documentation, using `explorer` where useful. If the user starts by reporting a bug in an existing implementation, delegate reproduction and diagnosis to `debugger` before continuing.
 2. Conduct a rigorous, Socratic design interview until you and the user reach a shared understanding:
    - Explore the codebase instead of asking the user any question that the codebase can answer.
    - Walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
