@@ -1,6 +1,6 @@
 interface:
   display_name: "Minipowers"
-  short_description: "Design, plan, implement, review, and complete repository changes"
+  short_description: "Design, plan, implement, review, and debug repository changes"
   default_prompt: "Use $minipowers for this development task."
 
 policy:

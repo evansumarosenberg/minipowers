@@ -1,6 +1,6 @@
 ---
 name: minipowers
-description: Run the user-approved design, planning, subagent implementation, review, commit, and completion workflow for a non-trivial repository development task.
+description: Run the user-approved design, planning, subagent implementation, review, commit, completion, and post-completion debugging workflow for a non-trivial repository development task.
 ---
 
 # Minipowers
@@ -14,6 +14,7 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 - `spec_reviewer`: reviews a proposed design specification.
 - `plan_reviewer`: reviews a proposed implementation plan.
 - `code_reviewer`: reviews implementation for compliance and code quality.
+- `debugger`: reproduces and diagnoses user-reported errors after completion.
 
 The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
@@ -119,3 +120,14 @@ After all tasks pass the code review gate:
    - Remaining limitations or follow-up work
 
 If final validation reveals a defect, reopen the affected task and repeat its implementation and review gates before completing the workflow.
+
+## 5. Debugging
+
+When the user reports a problem after completion:
+
+1. Delegate reproduction and diagnosis to a fresh `debugger`.
+2. Give it the user's report and relevant source-of-truth files.
+3. Review its report and communicate the findings to the user.
+4. If a fix is requested, reopen the affected task and follow its implementation and review gates.
+
+The `debugger` reports findings to the parent and does not implement fixes.
