@@ -46,6 +46,7 @@ Organize it into focused, independently reviewable tasks suitable for `worker`. 
 
 - Scope and expected outcome
 - Relevant files or components
+- Boundaries and explicit non-goals
 - Required tests
 - Dependencies
 - Acceptance criteria
@@ -81,13 +82,16 @@ Execute tasks sequentially by default. Parallelize implementation only when task
 
 For each task:
 
-1. Before starting the task, retire every subagent used for the previous implementation task. Do not reuse a previous task's `worker`, `code_reviewer`, or other task-scoped subagent; start fresh subagents for the new task.
-2. Delegate implementation to a fresh `worker`.
-3. Require red/green/refactor and relevant validation.
-4. Delegate the implementation review to a fresh `code_reviewer`.
-5. Return findings to `worker`; repeat review until `code_reviewer` returns `PASS`.
-6. Mark the task complete.
-7. Create a separate commit containing only that completed task.
+1. Freeze the task scope from its approved acceptance criteria, required tests, relevant components, boundaries, and non-goals.
+2. Keep the scope and finding ledger in the parent. Use a fresh task-scoped subagent for every delegation and retire it after its response; never reuse one across iterations.
+3. Delegate initial implementation to a fresh `worker`; require red/green/refactor and relevant validation.
+4. Delegate initial review to a fresh `code_reviewer` in initial-review mode; it establishes a numbered finding ledger.
+5. For each remediation round, adjudicate findings, then pass only the necessary current state to a fresh `worker` and a fresh `code_reviewer` in remediation-review mode until `PASS` or the limit below.
+6. Mark the task complete and create a separate commit containing only that task.
+
+A finding is blocking only when grounded in an approved requirement or a concrete regression or defect caused by the task diff. Record pre-existing issues, speculative edge cases, and adjacent improvements as non-blocking follow-ups.
+
+After the first review, review only unresolved ledger findings and regressions directly introduced by their fixes. The parent must adjudicate any other new finding before the worker acts. After two remediation rounds without `PASS`, pause the loop and audit scope: narrow or roll back overbroad fixes, reject out-of-scope findings, record follow-up work, or invoke the approved-deviation process. Do not waive valid unresolved defects.
 
 Reviewers report findings and do not modify code. `worker` must not review its own work. Use `explorer` for targeted, read-only investigation when useful.
 
