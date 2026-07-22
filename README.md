@@ -22,6 +22,18 @@ Please fetch the latest commit from [minipowers](https://github.com/evansumarose
 
 The custom `worker` and `explorer` definitions take precedence over Codex's built-in agents with the same names in the scope where they are installed.
 
+## Customizing subagents
+
+Each file in `agents/` is a subagent profile. You can customize a profile in `.codex/agents/<agent>.toml` by changing its `model` and `model_reasoning_effort` values. For example:
+
+```toml
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
+
+```
+
+By default, design and planning agents use Sol, implementation agents use Terra, and the explorer uses Luna.
+
 ## Use
 
 Start a new Codex task in the target project and invoke the skill explicitly:
