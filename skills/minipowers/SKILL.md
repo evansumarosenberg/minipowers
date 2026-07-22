@@ -34,7 +34,7 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
 6. Address its findings and repeat review until it returns `PASS`.
 7. Present the reviewed specification for explicit user approval.
 
-The approved design specification is the source of truth for intended behavior and scope.
+The approved design specification is the source of truth for intended behavior and scope. Once approved, it is an immutable record: do not retrospectively edit it after execution has begun.
 
 **Stop here until the user explicitly approves the design specification. Do not create an implementation plan or modify production code.**
 
@@ -91,17 +91,16 @@ For each task:
 
 A finding is blocking only when grounded in an approved requirement or a concrete regression or defect caused by the task diff. Record pre-existing issues, speculative edge cases, and adjacent improvements as non-blocking follow-ups.
 
-After the first review, review only unresolved ledger findings and regressions directly introduced by their fixes. The parent must adjudicate any other new finding before the worker acts. After two remediation rounds without `PASS`, pause the loop and audit scope: narrow or roll back overbroad fixes, reject out-of-scope findings, record follow-up work, or invoke the approved-deviation process. Do not waive valid unresolved defects.
+After the first review, review only unresolved ledger findings and regressions directly introduced by their fixes. The parent must adjudicate any other new finding before the worker acts. After three remediation rounds without `PASS`, pause the loop and audit scope: narrow or roll back overbroad fixes, reject out-of-scope findings, record follow-up work, or invoke the approved-deviation process. Do not waive valid unresolved defects.
 
-Reviewers report findings and do not modify code. `worker` must not review its own work. Use `explorer` for targeted, read-only investigation when useful.
+If implementation requires a material deviation from the approved design or a scope expansion:
 
-If implementation requires a material deviation from the approved design:
-
-1. Pause the affected task.
-2. Explain the proposed deviation and consequences.
-3. Request explicit user approval.
-4. Update the design specification and implementation plan where appropriate.
-5. Resume only after approval.
+1. Pause the affected task. Do not alter the already approved design specification or implementation plan.
+2. Start a design interview for the proposed change, resolving every material ambiguity before drafting an amendment.
+3. Create a separate supplemental design-specification amendment under `docs/`. It must reference the original approved specification and plan, state the rationale and precise delta, and define its own scope, non-goals, acceptance criteria, and affected tasks.
+4. Review the amendment with `spec_reviewer`, address findings until `PASS`, and obtain explicit user approval.
+5. Continue the workflow from the implementation-planning stage: create a separate supplemental implementation-plan amendment, review it with `plan_reviewer` until `PASS`, and obtain explicit user approval before implementing.
+6. Implement only the approved supplemental tasks and their review gates.
 
 Do not silently expand scope, alter approved behavior, or bypass a review gate.
 
@@ -123,15 +122,13 @@ After all tasks pass the code review gate:
    - Approved deviations
    - Remaining limitations or follow-up work
 
-If final validation reveals a defect, reopen the affected task and repeat its implementation and review gates before completing the workflow.
-
 ## 5. Debugging
 
-When the user reports a problem after completion:
+When the user reports a problem with the implementation:
 
 1. Delegate reproduction and diagnosis to a fresh `debugger`.
 2. Give it the user's report and relevant source-of-truth files.
 3. Review its report and communicate the findings to the user.
-4. If a fix is requested, reopen the affected task and follow its implementation and review gates.
-
-The `debugger` reports findings to the parent and does not implement fixes.
+4. If a fix is requested, classify it against the already approved specification and implementation plan before changing any artifact or code:
+   - **Conforming correction:** The fix restores approved behavior, stays within the approved task's scope, acceptance criteria, relevant components, and non-goals, and does not change the approved approach or expand scope. Reopen only the affected existing task and repeat its implementation and review gates.
+   - **Amendment required:** The fix changes the approved approach, requires behavior or work outside the approved scope, or otherwise expands scope. Do not reopen the original task as though it covered the new work. Use the supplemental-amendment workflow above, beginning with the design interview, and resume implementation only after the amendment and its supplemental plan are approved.
