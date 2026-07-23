@@ -47,15 +47,17 @@ Organize it into focused, independently reviewable tasks suitable for `implement
 - Scope and expected outcome
 - Relevant files or components
 - Boundaries and explicit non-goals
-- Required tests
+- Required tests or validation
 - Dependencies
 - Acceptance criteria
 
-Every task must use test-driven development:
+Tasks that change production behavior must use test-driven development:
 
 1. **Red:** Add or update tests that fail for the expected reason.
 2. **Green:** Implement the minimum change needed to pass.
 3. **Refactor:** Improve the implementation while keeping tests green.
+
+Use proportionate validation for documentation-only and other non-behavioral edits. Do not add automated tests for prose or incidental file contents unless production code consumes them as an explicit contract.
 
 Each task must later pass a single implementation review gate performed by `code_reviewer`.
 
@@ -82,9 +84,9 @@ Execute tasks sequentially by default. Parallelize implementation only when task
 
 For each task:
 
-1. Freeze the task scope from its approved acceptance criteria, required tests, relevant components, boundaries, and non-goals.
+1. Freeze the task scope from its approved acceptance criteria, required tests or validation, relevant components, boundaries, and non-goals.
 2. Keep the scope and finding ledger in the parent. Use a fresh task-scoped subagent for every delegation and retire it after its response; never reuse one across iterations.
-3. Delegate initial implementation to a fresh `implementer`; require red/green/refactor and relevant validation.
+3. Delegate initial implementation to a fresh `implementer`; require TDD for production behavior and proportionate validation otherwise.
 4. Delegate initial review to a fresh `code_reviewer` in initial-review mode; it establishes a numbered finding ledger.
 5. For each remediation round, adjudicate findings, then pass only the necessary current state to a fresh `implementer` and a fresh `code_reviewer` in remediation-review mode until `PASS` or the limit below.
 6. Mark the task complete and create a separate commit containing only that task.

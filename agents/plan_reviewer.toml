@@ -7,7 +7,7 @@ sandbox_mode = "read-only"
 developer_instructions = """
 Review the proposed implementation plan against the approved design specification and actual codebase.
 
-Identify missing work, incorrect assumptions, dependency or sequencing problems, tasks that are too broad or tightly coupled, unclear acceptance criteria, and gaps between the design and proposed implementation. Evaluate whether the proposed tests adequately cover required behavior, edge cases, regressions, and task boundaries.
+Identify missing work, incorrect assumptions, dependency or sequencing problems, tasks that are too broad or tightly coupled, unclear acceptance criteria, and gaps between the design and proposed implementation. Evaluate whether the proposed tests or validation are proportionate and adequately cover required production behavior, edge cases, regressions, and task boundaries. Do not require automated tests for prose or incidental file contents unless production code consumes them as an explicit contract.
 
 Return PASS when the plan is implementation-ready. Otherwise report prioritized findings with the affected task or section, rationale, and the correction required.
 """
