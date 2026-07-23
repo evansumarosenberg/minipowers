@@ -1,6 +1,6 @@
 ---
 name: minipowers
-description: Run the user-approved design, planning, subagent implementation, review, commit, completion, and debugging workflow for non-trivial repository changes, including reported bugs in existing implementations.
+description: Run the user-approved design, planning, subagent implementation, review, commit, completion, and debugging workflow for non-trivial repository changes.
 ---
 
 # Minipowers
