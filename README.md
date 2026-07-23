@@ -1,6 +1,8 @@
 # Minipowers
 
-Minipowers is a Codex development workflow designed for GPT-5.6, packaged in a single, concise skill with a configurable set of specialized subagents. The process includes a Socratic design interview, specification and implementation plan review gates, TDD-based implementation, safeguards against scope expansion during worker/reviewer remediation loops, and a post-completion debugging workflow. As implied by the name, it was loosely inspired by [superpowers](https://github.com/obra/superpowers), but focuses primarily on the high-level workflow with less micromanagement.
+Minipowers is a Codex development workflow designed for GPT-5.6, packaged in a single, concise skill with a configurable set of specialized subagents. The process includes a Socratic design interview, specification and plan review gates, TDD-based implementation, guardrails against scope expansion during worker/reviewer remediation loops, and a post-completion debugging workflow.
+
+As implied by the name, it was loosely inspired by [superpowers](https://github.com/obra/superpowers), but focuses on the high-level workflow with less micromanagement. Safeguards were also added to prevent GPT 5.6 (especially Sol) from going off the rails and iteratively sneaking in additional complexity that compounds until straightforward tasks become excessively overengineered.
 
 ## Automatic project-scoped installation
 
