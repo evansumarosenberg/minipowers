@@ -9,8 +9,8 @@ This skill governs the coordinating parent thread only. Give each subagent only 
 
 Use these project-scoped custom subagents from `.codex/agents/`:
 
-- `worker`: implements an approved task.
-- `explorer`: performs targeted, read-only codebase investigation.
+- `implementer`: implements an approved task.
+- `investigator`: performs targeted, read-only codebase investigation.
 - `spec_reviewer`: reviews a proposed design specification.
 - `plan_reviewer`: reviews a proposed implementation plan.
 - `code_reviewer`: reviews implementation for compliance and code quality.
@@ -20,7 +20,7 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
 
 ## 1. Design
 
-1. Inspect the relevant codebase and documentation, using `explorer` where useful. If the user starts by reporting a bug in an existing implementation, delegate reproduction and diagnosis to `debugger` before continuing.
+1. Inspect the relevant codebase and documentation, using `investigator` where useful. If the user starts by reporting a bug in an existing implementation, delegate reproduction and diagnosis to `debugger` before continuing.
 2. Conduct a rigorous, Socratic design interview until you and the user reach a shared understanding:
    - Explore the codebase instead of asking the user any question that the codebase can answer.
    - Walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
@@ -42,7 +42,7 @@ The approved design specification is the source of truth for intended behavior a
 
 After design approval, write an implementation plan as Markdown under `docs/`.
 
-Organize it into focused, independently reviewable tasks suitable for `worker`. Each task must identify:
+Organize it into focused, independently reviewable tasks suitable for `implementer`. Each task must identify:
 
 - Scope and expected outcome
 - Relevant files or components
@@ -84,14 +84,14 @@ For each task:
 
 1. Freeze the task scope from its approved acceptance criteria, required tests, relevant components, boundaries, and non-goals.
 2. Keep the scope and finding ledger in the parent. Use a fresh task-scoped subagent for every delegation and retire it after its response; never reuse one across iterations.
-3. Delegate initial implementation to a fresh `worker`; require red/green/refactor and relevant validation.
+3. Delegate initial implementation to a fresh `implementer`; require red/green/refactor and relevant validation.
 4. Delegate initial review to a fresh `code_reviewer` in initial-review mode; it establishes a numbered finding ledger.
-5. For each remediation round, adjudicate findings, then pass only the necessary current state to a fresh `worker` and a fresh `code_reviewer` in remediation-review mode until `PASS` or the limit below.
+5. For each remediation round, adjudicate findings, then pass only the necessary current state to a fresh `implementer` and a fresh `code_reviewer` in remediation-review mode until `PASS` or the limit below.
 6. Mark the task complete and create a separate commit containing only that task.
 
 A finding is blocking only when grounded in an approved requirement or a concrete regression or defect caused by the task diff. Record pre-existing issues, speculative edge cases, and adjacent improvements as non-blocking follow-ups.
 
-After the first review, review only unresolved ledger findings and regressions directly introduced by their fixes. The parent must adjudicate any other new finding before the worker acts. After three remediation rounds without `PASS`, pause the loop and audit scope: narrow or roll back overbroad fixes, reject out-of-scope findings, record follow-up work, or invoke the approved-deviation process. Do not waive valid unresolved defects.
+After the first review, review only unresolved ledger findings and regressions directly introduced by their fixes. The parent must adjudicate any other new finding before the implementer acts. After three remediation rounds without `PASS`, pause the loop and audit scope: narrow or roll back overbroad fixes, reject out-of-scope findings, record follow-up work, or invoke the approved-deviation process. Do not waive valid unresolved defects.
 
 If implementation requires a material deviation from the approved design or a scope expansion:
 

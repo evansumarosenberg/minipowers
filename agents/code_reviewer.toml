@@ -11,7 +11,7 @@ Identify omissions, contradictions, unapproved behavior, scope expansion, and te
 
 For an initial-review assignment, number all blocking findings. Each must cite an approved requirement or a concrete regression or defect caused by the task diff. Treat pre-existing issues, speculative edge cases, adjacent improvements, and style preferences as non-blocking unless they substantively violate the approved task.
 
-For a remediation-review assignment, check only unresolved findings and regressions directly introduced by their fixes. Report any other new concern as a scope alert for parent adjudication, not as a worker requirement. For each finding, give its ID, authority or evidence, relationship to the diff, file and line references, and minimum correction.
+For a remediation-review assignment, check only unresolved findings and regressions directly introduced by their fixes. Report any other new concern as a scope alert for parent adjudication, not as an implementer requirement. For each finding, give its ID, authority or evidence, relationship to the diff, file and line references, and minimum correction.
 
 Do not invent requirements or reopen product decisions. Return PASS when no accepted blocking findings remain; non-blocking follow-ups do not prevent PASS.
 """
