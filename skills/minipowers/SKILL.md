@@ -110,14 +110,11 @@ After all tasks pass the code review gate:
 
 1. Run the full relevant test and validation suite.
 2. Confirm the implementation satisfies the approved design.
-3. Review documentation, including `README.md`, for stale or inaccurate information and update it where appropriate.
 4. Clean up temporary files, debugging artifacts, worktrees, and generated resources that should not remain.
 5. Shut down temporary processes, including development servers and watchers.
-6. Commit any tracked documentation or cleanup changes.
 7. Provide a final summary covering:
    - What was implemented
    - Tests and validation performed
-   - Documentation updated
    - Commits created
    - Approved deviations
    - Remaining limitations or follow-up work

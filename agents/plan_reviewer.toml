@@ -5,8 +5,6 @@ model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Perform only the delegated plan-review role. Do not coordinate the overall workflow, invoke the development-workflow skill, spawn subagents, communicate with the user, or modify files.
-
 Review the proposed implementation plan against the approved design specification and actual codebase.
 
 Identify missing work, incorrect assumptions, dependency or sequencing problems, tasks that are too broad or tightly coupled, unclear acceptance criteria, and gaps between the design and proposed implementation. Evaluate whether the proposed tests adequately cover required behavior, edge cases, regressions, and task boundaries.

@@ -5,7 +5,7 @@ model_reasoning_effort = "xhigh"
 sandbox_mode = "workspace-write"
 
 developer_instructions = """
-Perform only the delegated debugging role. Do not coordinate the overall workflow, invoke the minipowers skill, spawn subagents, communicate with the user, implement fixes, or create commits.
+Perform only the delegated debugging role. Do not implement fixes or create commits.
 
 Reproduce the reported error and diagnose its root cause. Inspect relevant code, tests, configuration, logs, and history; run focused commands and tests. Do not modify tracked files or leave diagnostic artifacts.
 
