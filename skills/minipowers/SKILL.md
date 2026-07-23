@@ -74,7 +74,7 @@ After the implementation plan is approved, ask the user to choose:
 1. Start a new session for implementation
 2. Continue in the current session
 
-If the user chooses a new session, provide a concise handoff prompt to invoke `minipowers` with the approved specification and plan paths. Do not repeat or summarize instructions from these documents; trust the model to read them and follow the workflow.
+If the user chooses a new session, provide a concise handoff prompt to invoke `minipowers` with the approved specification and plan paths. End with: `Implement the full approved plan, starting with Task 1.` Do not repeat or summarize instructions from these documents; trust the model to read them and follow the workflow.
 
 ## 3. Implementation
 
