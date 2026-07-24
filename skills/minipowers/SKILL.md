@@ -18,10 +18,6 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 
 The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
-## Review-gate integrity
-
-A review gate is complete only when its assigned reviewer returns an explicit `PASS` for the current artifact or task diff. Elapsed time, polling count, lack of a progress update, or pressure to finish are never review outcomes. Do not interrupt, cancel, replace, or ask the reviewer for an early or partial result because a timeout or arbitrary polling threshold has been reached.
-
 ## 1. Design
 
 1. Inspect the relevant codebase and documentation, using `investigator` where useful. If the user starts by reporting a bug in an existing implementation, delegate reproduction and diagnosis to `debugger` before continuing.
@@ -92,7 +88,7 @@ For each task:
 2. Keep the scope and finding ledger in the parent. Use a fresh task-scoped subagent for every delegation and retire it after its response; never reuse one across iterations.
 3. Delegate initial implementation to a fresh `implementer`; require TDD for production behavior and proportionate validation otherwise.
 4. Delegate initial review to a fresh `code_reviewer` in initial-review mode; it establishes a numbered finding ledger.
-5. For each remediation round, adjudicate findings, then pass only the necessary current state to a fresh `implementer` and a fresh `code_reviewer` in remediation-review mode until `PASS` or the limit below.
+5. For each remediation round, adjudicate findings, then pass only the necessary current state to a fresh `implementer` and a fresh `code_reviewer` in remediation-review mode until `PASS` or a scope audit is triggered.
 6. Mark the task complete and create a separate commit containing only that task.
 
 A finding is blocking only when grounded in an approved requirement or a concrete regression or defect caused by the task diff. Record pre-existing issues, speculative edge cases, and adjacent improvements as non-blocking follow-ups.
@@ -107,8 +103,6 @@ If implementation requires a material deviation from the approved design or a sc
 4. Review the amendment with `spec_reviewer`, address findings until `PASS`, and obtain explicit user approval.
 5. Continue the workflow from the implementation-planning stage: create a separate supplemental implementation-plan amendment, review it with `plan_reviewer` until `PASS`, and obtain explicit user approval before implementing.
 6. Implement only the approved supplemental tasks and their review gates.
-
-Do not silently expand scope, alter approved behavior, or bypass a review gate.
 
 ## 4. Completion
 
@@ -135,3 +129,12 @@ When the user reports a problem with the implementation:
 4. If a fix is requested, classify it against the already approved specification and implementation plan before changing any artifact or code:
    - **Conforming correction:** The fix restores approved behavior, stays within the approved task's scope, acceptance criteria, relevant components, and non-goals, and does not change the approved approach or expand scope. Reopen only the affected existing task and repeat its implementation and review gates.
    - **Amendment required:** The fix changes the approved approach, requires behavior or work outside the approved scope, or otherwise expands scope. Do not reopen the original task as though it covered the new work. Use the supplemental-amendment workflow above, beginning with the design interview, and resume implementation only after the amendment and its supplemental plan are approved.
+
+## Context-compaction recovery
+
+After a context-compaction event, re-read the minipowers skill before taking any workflow action. Then re-read the approved design specification and implementation plan that apply to the current task. Treat the continuation summary as orientation only, never as a substitute for those source-of-truth documents.
+
+## Review-gate integrity
+
+A review gate is complete only when its assigned reviewer returns an explicit `PASS` for the current artifact or task diff. Elapsed time, polling count, lack of a progress update, or pressure to finish are never review outcomes. Do not interrupt, cancel, replace, or ask the reviewer for an early or partial result because a timeout or arbitrary polling threshold has been reached.
+
