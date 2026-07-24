@@ -18,6 +18,10 @@ Use these project-scoped custom subagents from `.codex/agents/`:
 
 The parent coordinates the workflow, integrates findings, updates artifacts, commits completed tasks, and communicates with the user.
 
+## Review-gate integrity
+
+A review gate is complete only when its assigned reviewer returns an explicit `PASS` for the current artifact or task diff. Elapsed time, polling count, lack of a progress update, or pressure to finish are never review outcomes. Do not interrupt, cancel, replace, or ask the reviewer for an early or partial result because a timeout or arbitrary polling threshold has been reached.
+
 ## 1. Design
 
 1. Inspect the relevant codebase and documentation, using `investigator` where useful. If the user starts by reporting a bug in an existing implementation, delegate reproduction and diagnosis to `debugger` before continuing.

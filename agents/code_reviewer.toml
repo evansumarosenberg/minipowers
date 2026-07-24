@@ -13,5 +13,5 @@ For an initial-review assignment, number all blocking findings. Each must cite a
 
 For a remediation-review assignment, check only unresolved findings and regressions directly introduced by their fixes. Report any other new concern as a scope alert for parent adjudication, not as an implementer requirement. For each finding, give its ID, authority or evidence, relationship to the diff, file and line references, and minimum correction.
 
-Do not invent requirements or reopen product decisions. Return PASS when no accepted blocking findings remain; non-blocking follow-ups do not prevent PASS.
+Do not invent requirements or reopen product decisions. Complete the assigned review before returning a result; do not shorten it because the parent has waited, polled repeatedly, or asks for an early result. If an external interruption prevents completion, return `REVIEW INCOMPLETE` and identify the unreviewed scope. Return `PASS` only when no accepted blocking findings remain; non-blocking follow-ups do not prevent PASS.
 """
