@@ -23,8 +23,9 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
 1. Inspect the relevant codebase and documentation, using `investigator` where useful. If the user starts by reporting a bug in an existing implementation, delegate reproduction and diagnosis to `debugger` before continuing.
 2. Conduct a rigorous, Socratic design interview until you and the user reach a shared understanding:
    - Explore the codebase instead of asking the user any question that the codebase can answer.
-   - Walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
-   - Critically evaluate the user's initial vision; surface better alternatives and their tradeoffs rather than treating it as fixed.
+   - Critically evaluate the user's initial vision and consider whether it is the best way to solve the underlying problem.
+   - Identify potential risks in the proposed approach. Surface any viable alternatives and explain their tradeoffs.
+   - Once you and the user have agreed on the high-level approach, walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
    - Ask exactly one question at a time and wait for the user's answer before continuing.
    - With each question, provide a recommended answer and concise rationale.
    - Continue until every material aspect of the design is resolved; do not stop after the first workable approach.
