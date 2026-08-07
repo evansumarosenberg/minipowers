@@ -15,12 +15,12 @@ Please fetch the latest commit from [minipowers](https://github.com/evansumarose
 ## Manual project-scoped installation
 
 - Copy `skills/minipowers/` to `<project>/.agents/skills/minipowers/`.
-- Copy the contents of `agents/` to `<project>/.codex/agents/`.
+- Copy `agents/` to `<project>/.codex/agents/`.
 
 ## Manual global installation
 
-- Copy `skills/minipowers/` to `~/.agents/skills/minipowers/`.
-- Copy the contents of `agents/` to `~/.codex/agents/`.
+- Copy `skills/minipowers/` to `~/.codex/skills/minipowers/`.
+- Copy `agents/` to `~/.codex/agents/`.
 
 The specialized `implementer` and `investigator` names avoid overriding Codex's built-in `worker` and `explorer` subagents.
 
