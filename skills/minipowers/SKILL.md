@@ -30,7 +30,7 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
    - With each question, provide a recommended answer and concise rationale.
    - Continue until every material aspect of the design is resolved; do not stop after the first workable approach.
 3. Summarize the agreed decisions and verify that no ambiguity remains. Resume the interview if any does.
-4. Write the proposed design specification as Markdown under `docs/`.
+4. Write the proposed design specification as Markdown under `docs/minipowers/`.
 5. Delegate review to `spec_reviewer`.
 6. Address its findings and repeat review until it returns `PASS`.
 7. Present the reviewed specification for explicit user approval.
@@ -41,7 +41,7 @@ The approved design specification is the source of truth for intended behavior a
 
 ## 2. Implementation Plan
 
-After design approval, write an implementation plan as Markdown under `docs/`.
+After design approval, write an implementation plan as Markdown under `docs/minipowers/`.
 
 Organize it into focused, independently reviewable tasks suitable for `implementer`. Each task must identify:
 
@@ -100,7 +100,7 @@ If implementation requires a material deviation from the approved design or a sc
 
 1. Pause the affected task. Do not alter the already approved design specification or implementation plan.
 2. Start a design interview for the proposed change, resolving every material ambiguity before drafting an amendment.
-3. Create a separate supplemental design-specification amendment under `docs/`. It must reference the original approved specification and plan, state the rationale and precise delta, and define its own scope, non-goals, acceptance criteria, and affected tasks.
+3. Create a separate supplemental design-specification amendment under `docs/minipowers/`. It must reference the original approved specification and plan, state the rationale and precise delta, and define its own scope, non-goals, acceptance criteria, and affected tasks.
 4. Review the amendment with `spec_reviewer`, address findings until `PASS`, and obtain explicit user approval.
 5. Continue the workflow from the implementation-planning stage: create a separate supplemental implementation-plan amendment, review it with `plan_reviewer` until `PASS`, and obtain explicit user approval before implementing.
 6. Implement only the approved supplemental tasks and their review gates.
