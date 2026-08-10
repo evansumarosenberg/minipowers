@@ -7,7 +7,7 @@ description: Run the user-approved design, planning, subagent implementation, re
 
 This skill governs the coordinating parent thread only. Give each subagent only its bounded assignment and the relevant source-of-truth files.
 
-Use these project-scoped custom subagents from `.codex/agents/`:
+Use these custom subagents:
 
 - `implementer`: implements an approved task.
 - `investigator`: performs targeted, read-only codebase investigation.
