@@ -27,7 +27,7 @@ The parent coordinates the workflow, integrates findings, updates artifacts, com
    - Identify potential risks in the proposed approach. Surface any viable alternatives and explain their tradeoffs.
    - Once you and the user have agreed on the high-level approach, walk every material branch of the decision tree, resolving prerequisite decisions before dependent decisions.
    - Ask exactly one question at a time and wait for the user's answer before continuing.
-   - With each question, provide a recommended answer and concise rationale.
+   - With each question, describe the viable approaches or alternatives and concisely explain their relevant tradeoffs. Make an initial recommendation only when one option is clearly preferable given the known constraints.
    - Continue until every material aspect of the design is resolved; do not stop after the first workable approach.
 3. Summarize the agreed decisions and verify that no ambiguity remains. Resume the interview if any does.
 4. Write the proposed design specification as Markdown under `docs/minipowers/`.
